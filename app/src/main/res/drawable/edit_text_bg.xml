@@ -1,34 +1,10 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:height="20dp"
-    android:width="20dp"
-    android:viewportWidth="400"
-    android:viewportHeight="400">
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group
-        android:pivotX="10.0"
-        android:pivotY="10.0">
+    <!-- Border Color -->
+    <stroke android:width="2dp" android:color="@color/colorPrimary" />
 
-        <!-- the outside box -->
+    <!-- Round Corners -->
+    <corners android:radius="5dp" />
 
-        <!-- top line & top left corner -->
-        <path android:pathData="M 30 60 H 40 c -40 0 -35 0 -35 35 "
-            android:strokeColor="@color/colorPrimary" android:strokeWidth="10" />
-
-        <!-- left line & bottom left corner -->
-        <path android:pathData="M 5 64 v 271 c 0 40 0 35 35 35 "
-            android:strokeColor="@color/colorPrimary" android:strokeWidth="10" />
-
-        <!-- bottom line & bottom right corner -->
-        <path android:pathData="M 30 370 h 330 c 40 0 35 -10 35 -35"
-            android:strokeColor="@color/colorPrimary" android:strokeWidth="10" />
-
-        <!-- right line & top right corner -->
-        <path android:pathData="M 395 356 v -261 c0 -40 0 -35 -50 -35"
-            android:strokeColor="@color/colorPrimary" android:strokeWidth="10" />
-
-        <!-- top line till end-->
-        <!-- 140 is the starting point of line after TEXT-->
-        <path android:pathData="M 30 60 370 60"
-            android:strokeColor="@color/colorPrimary" android:strokeWidth="10" />
-    </group>
-</vector>
+</shape>
