@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/greyBackground"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
+    android:background="@color/greyBackground">
 
-    <ImageView
-        android:id="@+id/ivBanner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:padding="32dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_banner"
-        tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/tvLoginHint"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:text="@string/login"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        android:orientation="vertical"
+        tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/etPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/edit_text_bg"
-        android:ems="10"
-        android:fontFamily="sans-serif-condensed-light"
-        android:hint="@string/enter_phone"
-        android:importantForAutofill="no"
-        android:inputType="phone"
-        android:maxLength="10"
-        android:paddingStart="24dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="16dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white" />
+        <ImageView
+            android:id="@+id/ivBanner"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="32dp"
+            app:srcCompat="@drawable/ic_banner"
+            tools:ignore="ContentDescription" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/edit_text_bg"
-        android:ems="10"
-        android:fontFamily="sans-serif-condensed-light"
-        android:hint="@string/enter_password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:paddingStart="24dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="16dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white" />
+        <TextView
+            android:id="@+id/tvLoginHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/netflix_font"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:text="@string/sign_in"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed-light"
+            android:hint="@string/enter_phone"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:paddingStart="24dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="16dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
 
-    <TextView
-        android:id="@+id/tvForgotPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:padding="8dp"
-        android:text="@string/forgot_password"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="italic" />
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed-light"
+            android:hint="@string/enter_password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:paddingStart="24dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="16dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/netflix_font"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/sign_in"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/tvSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:padding="8dp"
-        android:text="@string/don_t_have_an_account_sign_up_here"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/tvForgotPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:onClick="forgotPasswordIntent"
+            android:padding="8dp"
+            android:text="@string/forgot_password"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="italic" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:onClick="signUpIntent"
+            android:padding="8dp"
+            android:text="@string/don_t_have_an_account_sign_up_here"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+</ScrollView>

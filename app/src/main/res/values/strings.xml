@@ -6,4 +6,11 @@
     <string name="sign_in">Sign In</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="don_t_have_an_account_sign_up_here">Don\'t Have an Account? Sign Up Here!</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_password_min">Enter Password (Min 8 Characters)</string>
+    <string name="enter_repassword">Re-Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_address">Enter Delivery Address</string>
+    <string name="retrieve_account">Retrieve Account</string>
 </resources>
