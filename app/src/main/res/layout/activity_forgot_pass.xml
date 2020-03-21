@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/greyBackground"
-    tools:context=".ForgotPassActivity">
+    tools:context=".activities.ForgotPassActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:onClick="forgotPassUp"
             android:padding="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_up"
+            app:srcCompat="@drawable/ic_up"
             tools:ignore="ContentDescription" />
 
         <TextView

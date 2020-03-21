@@ -1,4 +1,4 @@
-package com.cybershark.foodflix
+package com.cybershark.foodflix.activities
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.cybershark.foodflix.R
 import kotlinx.android.synthetic.main.activity_login.*
 import java.lang.Exception
 
@@ -42,9 +43,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun signUp() = startActivity(Intent(this,RegisterActivity::class.java))
+    private fun signUp() = startActivity(Intent(this,
+        RegisterActivity::class.java))
 
-    private fun forgotPass() = startActivity(Intent(this,ForgotPassActivity::class.java))
+    private fun forgotPass() = startActivity(Intent(this,
+        ForgotPassActivity::class.java))
 
     private fun signIn() {
         val phone=etPhone.text.toString()
@@ -73,7 +76,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun homeActivityIntent(phone:String?,pass:String?,name:String?,email:String?,address:String?) {
         try {
-            val intent=Intent(this,HomeActivity::class.java)
+            val intent=Intent(this,
+                HomeActivity::class.java)
             intent.putExtra("phone",phone)
             intent.putExtra("pass",pass)
             intent.putExtra("name",name)
@@ -87,8 +91,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun signUpIntent(view: View) =startActivity(Intent(this,RegisterActivity::class.java))
+    fun signUpIntent(view: View) =startActivity(Intent(this,
+        RegisterActivity::class.java))
 
-    fun forgotPasswordIntent(view: View) =startActivity(Intent(this,ForgotPassActivity::class.java))
+    fun forgotPasswordIntent(view: View) =startActivity(Intent(this,
+        ForgotPassActivity::class.java))
 
 }

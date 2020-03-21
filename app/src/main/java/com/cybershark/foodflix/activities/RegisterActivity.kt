@@ -1,4 +1,4 @@
-package com.cybershark.foodflix
+package com.cybershark.foodflix.activities
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.cybershark.foodflix.R
 import kotlinx.android.synthetic.main.activity_register.*
 import java.lang.Exception
 
@@ -85,7 +86,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun homeActivityIntent(phone:String,pass:String,name:String,email:String,address:String) {
         try {
-            val intent= Intent(this,HomeActivity::class.java)
+            val intent= Intent(this,
+                HomeActivity::class.java)
             intent.putExtra("phone",phone)
             intent.putExtra("pass",pass)
             intent.putExtra("name",name)

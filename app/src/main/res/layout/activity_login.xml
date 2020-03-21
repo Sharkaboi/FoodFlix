@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".LoginActivity">
+        tools:context=".activities.LoginActivity">
 
         <ImageView
             android:id="@+id/ivBanner"
@@ -40,7 +40,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/edit_text_bg"
-            android:ems="10"
+            android:ems="15"
             android:fontFamily="sans-serif-condensed-light"
             android:hint="@string/enter_phone"
             android:importantForAutofill="no"
@@ -60,7 +60,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:background="@drawable/edit_text_bg"
-            android:ems="10"
+            android:ems="15"
             android:fontFamily="sans-serif-condensed-light"
             android:hint="@string/enter_password"
             android:importantForAutofill="no"

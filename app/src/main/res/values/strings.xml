@@ -13,4 +13,16 @@
     <string name="enter_email">Enter Email</string>
     <string name="enter_address">Enter Delivery Address</string>
     <string name="retrieve_account">Retrieve Account</string>
+    <string name="log_out">Log Out</string>
+    <string name="filter">Filter</string>
+    <string name="home">Home</string>
+    <string name="my_profile">My Profile</string>
+    <string name="favourite_restaurants">Favourite Restaurants</string>
+    <string name="order_history">Order History</string>
+    <string name="faq_s">FAQ\'s</string>
+    <string name="navigation_drawer_open">navigation drawer opened</string>
+    <string name="navigation_drawer_close">navigation drawer closed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
