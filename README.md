@@ -13,5 +13,5 @@ The Recent releases are found [here](https://github.com/Sharkaboi/FoodFlix/relea
 * JSON fetch and Parsing
 * SharedPreferences
 * RecyclerView Uses
-* POST and GET
+* Volley API
 * Glide
