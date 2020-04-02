@@ -17,7 +17,6 @@
             android:layout_margin="16dp"
             android:fontFamily="sans-serif-condensed-light"
             android:padding="8dp"
-            android:text="@string/faq"
             tools:text="@tools:sample/lorem/random"
             android:textAlignment="center"
             android:textColor="@android:color/white"
