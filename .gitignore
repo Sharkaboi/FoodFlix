@@ -12,3 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
+/app/src/res/values/secrets.xml
+"**/*/res/values/secrets.xml"
