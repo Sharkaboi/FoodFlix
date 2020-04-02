@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">FoodFlix</string>
+    <string name="login">Login</string>
+    <string name="enter_phone">Enter Phone</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account_sign_up_here">Don\'t Have an Account? Sign Up Here!</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_password_min">Enter Password (Min 8 Characters)</string>
+    <string name="enter_repassword">Re-Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_address">Enter Delivery Address</string>
+    <string name="retrieve_account">Retrieve Account</string>
+    <string name="log_out">Log Out</string>
+    <string name="filter">Filter</string>
+    <string name="home">Home</string>
+    <string name="my_profile">My Profile</string>
+    <string name="favourite_restaurants">Favourite Restaurants</string>
+    <string name="order_history">Order History</string>
+    <string name="faq_s">FAQ\'s</string>
+    <string name="navigation_drawer_open">navigation drawer opened</string>
+    <string name="navigation_drawer_close">navigation drawer closed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="previous_orders_are_listed_below">Previous Orders Are Listed Below:</string>
+    <string name="retry">Retry</string>
+    <string name="uh_oh_you_don_t_seem_to_be_connected_to_the_internet">Uh-Oh! You Don\'t Seem to be Connected to the Internet!</string>
+    <string name="faq">
+
+    </string>
+</resources>
