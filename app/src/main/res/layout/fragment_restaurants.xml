@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:background="@color/lighterGray"
         android:iconifiedByDefault="false"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
         android:queryHint="Search For Restaurants"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,11 +23,14 @@
         android:id="@+id/rvRestaurants"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scrollbarSize="4dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resSearchView"
-        tools:itemCount="500"
-        tools:listitem="@layout/restuarant_item" />
+        tools:itemCount="10"
+        tools:listitem="@layout/restaurant_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,3 @@
 package com.cybershark.foodflix.dataclasses
 
-import android.net.Uri
-
-data class RestaurantDataClass( val name:String,val rating:Float,val price:Int,val image:Uri)
+data class RestaurantDataClass(val id:Int, val name:String,val rating:Float,val price:Int,val image:String,val fav:Boolean)

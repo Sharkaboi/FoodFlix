@@ -24,5 +24,10 @@
     <string name="navigation_drawer_close">navigation drawer closed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="previous_orders_are_listed_below">Previous Orders Are Listed Below:</string>
+    <string name="retry">Retry</string>
+    <string name="uh_oh_you_don_t_seem_to_be_connected_to_the_internet">Uh-Oh! You Don\'t Seem to be Connected to the Internet!</string>
+    <string name="faq">
+
+    </string>
 </resources>
