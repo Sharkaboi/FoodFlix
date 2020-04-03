@@ -25,8 +25,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+
     - name: Replace API key
-    - run: perl -pi -e 'app/src/main/java/com/cybershark/foodflix/fragments/getString(R.string.token)/"$ENV{TOKEN}"/' RestaurantsFragment.kt
+      run: perl -pi -e 'app/src/main/java/com/cybershark/foodflix/fragments/getString(R.string.token)/"$ENV{TOKEN}"/' RestaurantsFragment.kt
       env:
           TOKEN: ${{ secrets.API_KEY }}
     - name: Make Gradle executable
