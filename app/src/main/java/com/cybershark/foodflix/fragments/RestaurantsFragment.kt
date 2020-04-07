@@ -78,6 +78,7 @@ class RestaurantsFragment : Fragment() {
                     },
                     Response.ErrorListener {
                         Toast.makeText(activity, "Error retrieving Data from the internet", Toast.LENGTH_SHORT).show()
+                        inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility=View.GONE
                     }) {
                     override fun getHeaders(): MutableMap<String, String> {
                         val headers = HashMap<String, String>()

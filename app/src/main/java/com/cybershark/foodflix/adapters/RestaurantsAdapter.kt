@@ -1,6 +1,7 @@
 package com.cybershark.foodflix.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,12 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
         holder.tvResCost.text=("₹ "+tempItemList[position].price+" per person.")
         holder.tvResName.text=tempItemList[position].name.trim()
         ///TODO:add listener
+        holder.itemView.setOnClickListener{
+            Log.e("foodflix","item onclick")
+            Toast.makeText(context,"${tempItemList[position].name} clicked!",Toast.LENGTH_SHORT).show()
+        }
         holder.ivFav.setOnClickListener {
+            Log.e("foodflix","fav onclick")
             if (tempItemList[position].fav){
                 holder.ivFav.setImageResource(R.drawable.ic_favorite_unselected)
                 //TODO:remove from db
@@ -63,6 +69,7 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
                         ),
                     3
                 ).execute().get()
+                tempItemList[position].fav=false
                 if(result)
                     Toast.makeText(context,"Removed ${tempItemList[position].name} to Favourites!",Toast.LENGTH_SHORT).show()
                 else {
@@ -84,6 +91,7 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
                     ),
                     2
                 ).execute().get()
+                tempItemList[position].fav=true
                 if(result)
                     Toast.makeText(context,"Added ${tempItemList[position].name} to Favourites!",Toast.LENGTH_SHORT).show()
                 else {
