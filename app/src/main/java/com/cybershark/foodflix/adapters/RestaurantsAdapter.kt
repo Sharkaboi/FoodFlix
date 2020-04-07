@@ -6,10 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.cybershark.foodflix.R
 import com.cybershark.foodflix.dataclasses.RestaurantDataClass
+import com.cybershark.foodflix.sqllite.DBAsyncTask
+import com.cybershark.foodflix.sqllite.RestaurantEntity
 import kotlinx.android.synthetic.main.restaurant_item.view.*
 
 class RestaurantsAdapter(private val context:Context,private val tempItemList:MutableList<RestaurantDataClass>): RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>() {
@@ -33,9 +38,59 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
         if (tempItemList[position].fav)
             holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
-        Glide.with(context).load(tempItemList[position].image).into(holder.ivResPic)
+        Glide.with(context)
+            .load(tempItemList[position].image)
+            .error(R.drawable.ic_no_wifi)
+            .transform(CenterCrop(),RoundedCorners(12))
+            .into(holder.ivResPic)
         holder.tvRating.text=tempItemList[position].rating.toString().trim()
-        holder.tvResCost.text=("Rs."+tempItemList[position].price+" per person.")
+        holder.tvResCost.text=("₹ "+tempItemList[position].price+" per person.")
         holder.tvResName.text=tempItemList[position].name.trim()
+        ///TODO:add listener
+        holder.ivFav.setOnClickListener {
+            if (tempItemList[position].fav){
+                holder.ivFav.setImageResource(R.drawable.ic_favorite_unselected)
+                //TODO:remove from db
+                val result=DBAsyncTask(
+                    context.applicationContext,
+                    RestaurantEntity(
+                        tempItemList[position].id,
+                        tempItemList[position].name,
+                        tempItemList[position].rating,
+                        tempItemList[position].price,
+                        tempItemList[position].image,
+                        true
+                        ),
+                    3
+                ).execute().get()
+                if(result)
+                    Toast.makeText(context,"Removed ${tempItemList[position].name} to Favourites!",Toast.LENGTH_SHORT).show()
+                else {
+                    Toast.makeText(context, "An Error has occurred!\nTry again later", Toast.LENGTH_SHORT).show()
+                    holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
+                }
+            }else{
+                holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
+                //TODO:add to db
+                val result=DBAsyncTask(
+                    context.applicationContext,
+                    RestaurantEntity(
+                        tempItemList[position].id,
+                        tempItemList[position].name,
+                        tempItemList[position].rating,
+                        tempItemList[position].price,
+                        tempItemList[position].image,
+                        true
+                    ),
+                    2
+                ).execute().get()
+                if(result)
+                    Toast.makeText(context,"Added ${tempItemList[position].name} to Favourites!",Toast.LENGTH_SHORT).show()
+                else {
+                    Toast.makeText(context, "An Error has occurred!\nTry again later", Toast.LENGTH_SHORT).show()
+                    holder.ivFav.setImageResource(R.drawable.ic_favorite_unselected)
+                }
+            }
+        }
     }
 }

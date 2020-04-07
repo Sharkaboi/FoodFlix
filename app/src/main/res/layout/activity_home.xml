@@ -22,7 +22,6 @@
             android:background="@color/colorPrimary"
             android:fitsSystemWindows="true"
             android:minHeight="?attr/actionBarSize"
-            app:menu="@menu/toolbar_menu"
             app:popupTheme="@style/AppTheme.NoActionBar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 

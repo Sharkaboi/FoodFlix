@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/lighterGray"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvFaqQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Q: I want to return my Order! What do I do?" />
+
+    <TextView
+        android:id="@+id/tvFaqAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:padding="8dp"
+        android:autoLink="all"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        tools:text="A: If you are not 100% satisfied with your Order, Send us a message on Customer care chat or call us at (+123) 28549763943 Toll-Free." />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/colorPrimary" />
+
+
+</LinearLayout>

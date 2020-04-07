@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        toolbar.title = "All Restaurants"
         setSupportActionBar(toolbar)
         sharedPreferences=getSharedPreferences(spFileName, Context.MODE_PRIVATE)
 
@@ -41,28 +44,36 @@ class HomeActivity : AppCompatActivity() {
 
         //opens default fragment
         openRestaurantsFragment()
-        toolbar.title = "All Restaurants"
 
         //sets nav bar listener
         nav_view.setNavigationItemSelectedListener{
             when(it.itemId){
                 R.id.home_item ->{
-                    openRestaurantsFragment()
+                    when {
+                        supportFragmentManager.findFragmentById(R.id.fragmentContainer) !is RestaurantsFragment -> {
+                            toolbar.menu.findItem(R.id.filter).isVisible=true
+                            openRestaurantsFragment()
+                            }
+                        }
                 }
                 R.id.fav_res_item ->{
                     toolbar.title = "Favorites"
+                    toolbar.menu.findItem(R.id.filter).isVisible=false
                     supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, FavouritesFragment()).commit()
                 }
                 R.id.profile_item ->{
                     toolbar.title = "Profile"
+                    toolbar.menu.findItem(R.id.filter).isVisible=false
                     supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, ProfileFragment()).commit()
                 }
                 R.id.faq_item ->{
                     toolbar.title = "FAQ"
+                    toolbar.menu.findItem(R.id.filter).isVisible=false
                     supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, FaqFragment()).commit()
                 }
                 R.id.order_history_item ->{
                     toolbar.title = "Order History"
+                    toolbar.menu.findItem(R.id.filter).isVisible=false
                     supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, OrderHistoryFragment()).commit()
                 }
                 R.id.logout_item -> {
@@ -105,5 +116,14 @@ class HomeActivity : AppCompatActivity() {
             }
             else -> super.onBackPressed()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu,menu)
+        return true
+    }
+
+    fun filterRes(item: MenuItem) {
+
     }
 }
