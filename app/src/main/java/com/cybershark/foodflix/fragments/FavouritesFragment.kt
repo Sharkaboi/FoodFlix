@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cybershark.foodflix.R
 import com.cybershark.foodflix.adapters.RestaurantsAdapter
+import com.cybershark.foodflix.sqllite.DBAsyncTask
 
 
 class FavouritesFragment : Fragment() {
@@ -19,7 +20,8 @@ class FavouritesFragment : Fragment() {
         inflatedView= inflater.inflate(R.layout.fragment_favourites, container, false)
         val rvFavourites=inflatedView.findViewById<RecyclerView>(R.id.rvFavourites)
         rvFavourites.layoutManager= LinearLayoutManager(activity!!.applicationContext)
-        //rvFavourites.adapter= RestaurantsAdapter(activity!!.applicationContext,)
+        //val dataList=DBAsyncTask(activity!!.applicationContext,null,4)
+        //rvFavourites.adapter= RestaurantsAdapter(activity!!.applicationContext,dataList)
         return inflatedView
     }
 

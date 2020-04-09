@@ -63,7 +63,7 @@ class RestaurantsFragment : Fragment() {
                                 val cost=resultJSONObject.getInt("cost_for_one")
                                 val image=resultJSONObject.getString("image_url")
                                 var fav=false
-                                val resEntity=RestaurantEntity(id, name, rating, cost, image, false)
+                                val resEntity=RestaurantEntity(id, name, rating, cost, image, true)
                                 val checkFav= DBAsyncTask(activity!!.applicationContext,resEntity,1).execute().get()
                                 if(checkFav)
                                    fav=true

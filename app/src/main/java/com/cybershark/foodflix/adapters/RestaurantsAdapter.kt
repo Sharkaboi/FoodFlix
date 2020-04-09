@@ -39,6 +39,8 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
         if (tempItemList[position].fav)
             holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
+        else
+            holder.ivFav.setImageResource(R.drawable.ic_favorite_unselected)
         Glide.with(context)
             .load(tempItemList[position].image)
             .error(R.drawable.ic_no_wifi)
