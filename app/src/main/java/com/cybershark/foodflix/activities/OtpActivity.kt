@@ -6,64 +6,68 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
-import android.view.View
 import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.cybershark.foodflix.R
-import kotlinx.android.synthetic.main.activity_forgot_pass.*
+import kotlinx.android.synthetic.main.activity_otp.*
 import org.json.JSONObject
 import java.lang.Exception
 
-class ForgotPassActivity : AppCompatActivity() {
+class OtpActivity : AppCompatActivity() {
 
-    private lateinit var email:String
+    private val spFileName="foodFlixFile"
+    private lateinit var otp:String
+    private lateinit var pass:String
     private lateinit var phone:String
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forgot_pass)
-        email=""
-        phone=""
+        setContentView(R.layout.activity_otp)
+        sharedPreferences=getSharedPreferences(spFileName, Context.MODE_PRIVATE)
+        otp=""
+        pass=""
+        phone=intent.extras?.getString("phone")!!
         btnRetrieve.setOnClickListener {
-            email= etEmail.text.toString()
-            phone=etPhone.text.toString()
-            if(email.isBlank()||phone.isBlank()){
-                Toast.makeText(this, "Enter Phone number or PassWord", Toast.LENGTH_SHORT).show()
-                etPhone.setText("")
-                etEmail.setText("")
-            }else if (!isEmailValid(email)){
-                Toast.makeText(this,"Invalid Email",Toast.LENGTH_SHORT).show()
-            }else if(phone.length<10){
-                Toast.makeText(this,"Invalid Phone Number!",Toast.LENGTH_SHORT).show()
+            otp=etOtp.text.toString()
+            pass=etPassword.text.toString()
+            val rePass=etRePassword.text.toString()
+            if (otp.length<4){
+                Toast.makeText(this,"Invalid OTP.",Toast.LENGTH_SHORT).show()
+            }else if (pass!=rePass){
+                Toast.makeText(this,"Passwords Don't Match!",Toast.LENGTH_SHORT).show()
+                etPassword.setText("")
+                etRePassword.setText("")
+            }else if (pass.length<4||rePass.length<4){
+                Toast.makeText(this,"Password should be at least 4 characters.",Toast.LENGTH_SHORT).show()
             }else{
-                forgotPassAPIFunc()
+                checkOtpWithAPI()
             }
         }
     }
 
-    private fun forgotPassAPIFunc() {
+    private fun checkOtpWithAPI() {
         val queue= Volley.newRequestQueue(this)
         val userDetails= JSONObject()
         userDetails.put("mobile_number", phone)
-        userDetails.put("email",email)
+        userDetails.put("password",pass)
+        userDetails.put("otp",otp)
         val jsonObjectRequest=object : JsonObjectRequest(
             Method.POST,
-            "http://13.235.250.119/v2/forgot_password/fetch_result",
+            "http://13.235.250.119/v2/reset_password/fetch_result",
             userDetails,
             Response.Listener {
                 try {
                     val data=it.getJSONObject("data")
                     if(data.getBoolean("success")){
-                        if (!data.getBoolean("first_try"))
-                            Toast.makeText(this,"Use same OTP for 24 Hours",Toast.LENGTH_LONG).show()
-                        otpActivityIntent()
+                        signInActivityIntent()
+                        sharedPreferences.edit().clear().apply()
                     }else{
-                        Toast.makeText(this, "Error: ${data.getString("errorMessage")}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "An Unexpected Error has occurred!", Toast.LENGTH_SHORT).show()
                     }
-                }catch (e:Exception){
+                }catch (e: Exception){
                     Toast.makeText(this, "An Unexpected Error has occurred!", Toast.LENGTH_SHORT).show()
                 }
             },
@@ -81,14 +85,8 @@ class ForgotPassActivity : AppCompatActivity() {
         queue.add(jsonObjectRequest)
     }
 
-    fun forgotPassUp(view: View) =onBackPressed()
-
-    private fun isEmailValid(email: CharSequence) = Patterns.EMAIL_ADDRESS.matcher(email).matches()
-
-    private fun otpActivityIntent() {
-        val intent=Intent(this, OtpActivity::class.java)
-        intent.putExtra("phone",phone)
-        startActivity(intent)
+    private fun signInActivityIntent() {
+        startActivity(Intent(this,LoginActivity::class.java))
         finishAffinity()
     }
 }

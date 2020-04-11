@@ -3,19 +3,15 @@ package com.cybershark.foodflix.fragments
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -23,24 +19,37 @@ import com.cybershark.foodflix.R
 import com.cybershark.foodflix.adapters.RestaurantsAdapter
 import com.cybershark.foodflix.dataclasses.RestaurantDataClass
 import com.cybershark.foodflix.sqllite.DBAsyncTask
-import com.cybershark.foodflix.sqllite.ResDB
 import com.cybershark.foodflix.sqllite.RestaurantEntity
 import com.cybershark.foodflix.util.InternetConnectionManager
 import java.lang.Exception
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.HashMap
 
 class RestaurantsFragment : Fragment() {
 
     private lateinit var inflatedView: View
+    private var ratingComparator= Comparator<RestaurantDataClass>{ res1, res2 ->
+            if((res1.rating.compareTo(res2.rating))==0){
+                res1.name.compareTo(res2.name)*-1
+            }else{
+                res1.rating.compareTo(res2.rating)
+            }
+    }
+    private lateinit var restaurantList: MutableList<RestaurantDataClass>
+    private lateinit var rvRestaurants:RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //has menu only for this fragment
+        setHasOptionsMenu(true)
 
         // Inflate the layout for this fragment
         inflatedView = inflater.inflate(R.layout.fragment_restaurants, container, false)
         try {
             if (InternetConnectionManager().isNetworkAccessActive(activity as Context)) {
 
-                val restaurantList = mutableListOf<RestaurantDataClass>()
-                val rvRestaurants = inflatedView.findViewById<RecyclerView>(R.id.rvRestaurants)
+                restaurantList = mutableListOf()
+                rvRestaurants = inflatedView.findViewById(R.id.rvRestaurants)
 
                 rvRestaurants.layoutManager = LinearLayoutManager(activity as Context)
                 rvRestaurants.adapter = RestaurantsAdapter(activity as Context, restaurantList)
@@ -77,8 +86,10 @@ class RestaurantsFragment : Fragment() {
                         inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility=View.GONE
                     },
                     Response.ErrorListener {
-                        Toast.makeText(activity, "Error retrieving Data from the internet", Toast.LENGTH_SHORT).show()
-                        inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility=View.GONE
+                        if (activity!=null) {
+                            Toast.makeText(activity, "Error retrieving Data from the internet", Toast.LENGTH_SHORT).show()
+                            inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility = View.GONE
+                        }
                     }) {
                     override fun getHeaders(): MutableMap<String, String> {
                         val headers = HashMap<String, String>()
@@ -90,28 +101,44 @@ class RestaurantsFragment : Fragment() {
                 queue.add(jsonObjectRequest)
 
             } else {
+                if(activity!=null)
                 AlertDialog.Builder(activity as Context)
                     .setIcon(R.drawable.ic_no_wifi)
                     .setTitle("No Internet")
                     .setMessage("Internet Access has been Restricted.")
                     .setPositiveButton("Retry") { dialog, which ->
+                        if (activity!=null)
                         if (InternetConnectionManager().isNetworkAccessActive(activity as Context)) {
                             dialog.dismiss()
                         } else {
+                            if(activity!=null)
                             Toast.makeText(activity as Context, "Still Disconnected :(", Toast.LENGTH_SHORT).show()
                         }
                     }
                     .setNegativeButton("Open Settings") { dialog, which ->
                         startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
-                        activity!!.finish()
                     }
                     .setCancelable(false)
                     .show()
             }
         }catch (e:Exception){
-            Toast.makeText(activity as Context, "An Unexpected Error has occured!", Toast.LENGTH_SHORT).show()
+            if(activity!=null)
+            Toast.makeText(activity as Context, "An Unexpected Error has occurred!", Toast.LENGTH_SHORT).show()
             Log.e("foodflix",e.message.toString())
         }
         return inflatedView
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+            inflater.inflate(R.menu.toolbar_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.filter){
+            Collections.sort(restaurantList,ratingComparator)
+            restaurantList.reverse()
+            rvRestaurants.adapter?.notifyDataSetChanged()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

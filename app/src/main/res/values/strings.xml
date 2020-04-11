@@ -7,8 +7,9 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="don_t_have_an_account_sign_up_here">Don\'t Have an Account? Sign Up Here!</string>
     <string name="SignUp">Sign Up</string>
-    <string name="enter_name">Enter Name</string>
-    <string name="enter_password_min">Enter Password (Min 8 Characters)</string>
+    <string name="enter_name">Enter Name (Min 3 Characters)</string>
+    <string name="enter_new_password_min">Enter New Password (Min 4 Characters)</string>
+    <string name="enter_password_min">Enter Password (Min 4 Characters)</string>
     <string name="enter_repassword">Re-Enter Password</string>
     <string name="enter_email">Enter Email</string>
     <string name="enter_address">Enter Delivery Address</string>
@@ -22,9 +23,16 @@
     <string name="faq_s">FAQ\'s</string>
     <string name="navigation_drawer_open">navigation drawer opened</string>
     <string name="navigation_drawer_close">navigation drawer closed</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="previous_orders_are_listed_below">Previous Orders Are Listed Below:</string>
     <string name="retry">Retry</string>
     <string name="uh_oh_you_don_t_seem_to_be_connected_to_the_internet">Uh-Oh! You Don\'t Seem to be Connected to the Internet!</string>
+    <string name="next">Next</string>
+    <string name="otp">Enter the recieved OTP below.</string>
+    <string name="enter_otp">Enter OTP (4 Characters)</string>
+    <string name="choose_from_menu_listed_below">Choose from menu listed below :</string>
+    <string name="proceed_to_cart">Proceed To Cart</string>
+    <string name="your_order_has_been_successfully_placed">Your order has been successfully placed!</string>
+    <string name="ok">Ok</string>
+    <string name="place_order">Place Order</string>
+    <string name="ordering_from">Ordering From:</string>
 </resources>

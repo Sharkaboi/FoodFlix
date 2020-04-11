@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/greyBackground"
     android:orientation="vertical"
+    android:background="@color/greyBackground"
     tools:context=".activities.RegisterActivity">
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/ibUp"
+            android:id="@+id/ivRegisterUp"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@android:color/transparent"
@@ -59,11 +59,8 @@
                 android:hint="@string/enter_name"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:maxLength="10"
-                android:paddingStart="24dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="16dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
 
@@ -79,10 +76,8 @@
                 android:hint="@string/enter_email"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:paddingStart="24dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="16dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
 
@@ -99,10 +94,8 @@
                 android:importantForAutofill="no"
                 android:inputType="phone"
                 android:maxLength="10"
-                android:paddingStart="24dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="16dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
 
@@ -118,10 +111,8 @@
                 android:hint="@string/enter_address"
                 android:importantForAutofill="no"
                 android:inputType="textPostalAddress"
-                android:paddingStart="24dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="16dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
 
@@ -137,10 +128,8 @@
                 android:hint="@string/enter_password_min"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:paddingStart="24dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="16dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
 
@@ -156,10 +145,8 @@
                 android:hint="@string/enter_repassword"
                 android:importantForAutofill="no"
                 android:inputType="textVisiblePassword"
-                android:paddingStart="24dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="16dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
 
@@ -172,8 +159,8 @@
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/netflix_font"
                 android:onClick="singUpConfirm"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="8dp"
                 android:text="@string/SignUp"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"

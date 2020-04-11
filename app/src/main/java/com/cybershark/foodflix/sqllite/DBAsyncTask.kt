@@ -6,7 +6,7 @@ import androidx.room.Room
 
 class DBAsyncTask(val context: Context, private val restaurantEntity:RestaurantEntity, private val operationIndex:Int): AsyncTask<Void, Void, Boolean>() {
 
-    val sqlLiteDB= Room.databaseBuilder(context,ResDB::class.java,"res-db").build()
+    private val sqlLiteDB= Room.databaseBuilder(context,ResDB::class.java,"res-db").build()
 
     override fun doInBackground(vararg params: Void?): Boolean {
         when(operationIndex){

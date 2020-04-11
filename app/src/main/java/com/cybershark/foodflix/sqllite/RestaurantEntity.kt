@@ -11,5 +11,5 @@ data class RestaurantEntity(
     @ColumnInfo(name = "res_rating") val rating:Float,
     @ColumnInfo(name = "res_price") val price:Int,
     @ColumnInfo(name = "res_image") val image:String,
-    @ColumnInfo(name = "res_fav") val fav:Boolean
+    @ColumnInfo(name = "res_fav") var fav:Boolean
 )

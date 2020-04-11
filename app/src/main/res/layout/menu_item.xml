@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/greyBackground">
+
+    <TextView
+        android:id="@+id/tvMenuItemId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:paddingStart="16dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry"
+        tools:text="1." />
+
+    <TextView
+        android:id="@+id/tvMenuItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/tvMenuItemPrice"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddRemove"
+        app:layout_constraintStart_toEndOf="@id/tvMenuItemId"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Burnt Chicken Baco" />
+
+    <Button
+        android:id="@+id/btnAddRemove"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvMenuItemName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Add" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lighterGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMenuItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/divider3"
+        app:layout_constraintStart_toStartOf="@id/tvMenuItemName"
+        app:layout_constraintTop_toBottomOf="@+id/tvMenuItemName"
+        tools:text="Rs. 200" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
