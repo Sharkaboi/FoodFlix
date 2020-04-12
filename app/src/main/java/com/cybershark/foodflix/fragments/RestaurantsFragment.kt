@@ -81,7 +81,6 @@ class RestaurantsFragment : Fragment() {
                                 )
                             }
                         }
-                        //TODO:check or swap adapter
                         rvRestaurants.adapter!!.notifyDataSetChanged()
                         inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility=View.GONE
                     },
@@ -110,6 +109,7 @@ class RestaurantsFragment : Fragment() {
                         if (activity!=null)
                         if (InternetConnectionManager().isNetworkAccessActive(activity as Context)) {
                             dialog.dismiss()
+                            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,RestaurantsFragment()).commit()
                         } else {
                             if(activity!=null)
                             Toast.makeText(activity as Context, "Still Disconnected :(", Toast.LENGTH_SHORT).show()

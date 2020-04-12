@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -34,16 +35,22 @@ class OtpActivity : AppCompatActivity() {
             otp=etOtp.text.toString()
             pass=etPassword.text.toString()
             val rePass=etRePassword.text.toString()
-            if (otp.length<4){
-                Toast.makeText(this,"Invalid OTP.",Toast.LENGTH_SHORT).show()
-            }else if (pass!=rePass){
-                Toast.makeText(this,"Passwords Don't Match!",Toast.LENGTH_SHORT).show()
-                etPassword.setText("")
-                etRePassword.setText("")
-            }else if (pass.length<4||rePass.length<4){
-                Toast.makeText(this,"Password should be at least 4 characters.",Toast.LENGTH_SHORT).show()
-            }else{
-                checkOtpWithAPI()
+            when {
+                otp.length<4 -> {
+                    Toast.makeText(this,"Invalid OTP.",Toast.LENGTH_SHORT).show()
+                }
+                pass!=rePass -> {
+                    Toast.makeText(this,"Passwords Don't Match!",Toast.LENGTH_SHORT).show()
+                    etPassword.setText("")
+                    etRePassword.setText("")
+                }
+                pass.length<6 -> {
+                    Toast.makeText(this,"Password should be at least 6 characters.",Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    contentLoading.visibility=View.VISIBLE
+                    checkOtpWithAPI()
+                }
             }
         }
     }
@@ -62,16 +69,19 @@ class OtpActivity : AppCompatActivity() {
                 try {
                     val data=it.getJSONObject("data")
                     if(data.getBoolean("success")){
-                        signInActivityIntent()
                         sharedPreferences.edit().clear().apply()
+                        signInActivityIntent()
                     }else{
-                        Toast.makeText(this, "An Unexpected Error has occurred!", Toast.LENGTH_SHORT).show()
+                        contentLoading.visibility=View.GONE
+                        Toast.makeText(this, "An Unexpected Server Error has occurred!", Toast.LENGTH_SHORT).show()
                     }
                 }catch (e: Exception){
+                    contentLoading.visibility=View.GONE
                     Toast.makeText(this, "An Unexpected Error has occurred!", Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener {
+                contentLoading.visibility=View.GONE
                 Toast.makeText(this, "Error sending Data to the server!", Toast.LENGTH_SHORT).show()
                 Log.e("foodflix",it.message.toString())
             }) {

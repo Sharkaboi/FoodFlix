@@ -36,8 +36,7 @@ class FavResAdapter(private val context:Context,private val tempItemList:Mutable
     }
 
     override fun onBindViewHolder(holder: FavResViewHolder, position: Int) {
-        //if (tempItemList[position].fav)
-            holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
+        Glide.with(context).load(R.drawable.ic_favorite_selected).into(holder.ivFav)
         Glide.with(context)
             .load(tempItemList[position].image)
             .error(R.drawable.ic_no_wifi)
@@ -46,59 +45,24 @@ class FavResAdapter(private val context:Context,private val tempItemList:Mutable
         holder.tvRating.text=tempItemList[position].rating.toString().trim()
         holder.tvResCost.text=("₹ "+tempItemList[position].price+" per person.")
         holder.tvResName.text=tempItemList[position].name.trim()
-        ///TODO:add listener
-        holder.itemView.setOnClickListener{
-            Log.e("foodflix","item onclick")
-            Toast.makeText(context,"${tempItemList[position].name} clicked!",Toast.LENGTH_SHORT).show()
-        }
         holder.ivFav.setOnClickListener {
             Log.e("foodflix","fav onclick")
-            if (tempItemList[position].fav){
-                holder.ivFav.setImageResource(R.drawable.ic_favorite_unselected)
-                //TODO:remove from db
+                //remove from db
                 val result=DBAsyncTask(
                     context.applicationContext,
-                    RestaurantEntity(
-                        tempItemList[position].id,
-                        tempItemList[position].name,
-                        tempItemList[position].rating,
-                        tempItemList[position].price,
-                        tempItemList[position].image,
-                        true
-                    ),
+                    tempItemList[position],
                     3
                 ).execute().get()
-                tempItemList[position].fav=false
-                notifyDataSetChanged()
-                if(result)
-                    Toast.makeText(context,"Removed ${tempItemList[position].name} to Favourites!",Toast.LENGTH_SHORT).show()
-                else {
-                    Toast.makeText(context, "An Error has occurred!\nTry again later", Toast.LENGTH_SHORT).show()
-                    holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
+                if(result) {
+                    val name=tempItemList[position].name
+                    tempItemList.removeAt(position)
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position,tempItemList.size)
+                    Toast.makeText(context, "Removed $name to Favourites!", Toast.LENGTH_SHORT).show()
                 }
-            }else{
-                holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
-                //TODO:add to db
-                val result=DBAsyncTask(
-                    context.applicationContext,
-                    RestaurantEntity(
-                        tempItemList[position].id,
-                        tempItemList[position].name,
-                        tempItemList[position].rating,
-                        tempItemList[position].price,
-                        tempItemList[position].image,
-                        true
-                    ),
-                    2
-                ).execute().get()
-                tempItemList[position].fav=true
-                if(result)
-                    Toast.makeText(context,"Added ${tempItemList[position].name} to Favourites!",Toast.LENGTH_SHORT).show()
                 else {
                     Toast.makeText(context, "An Error has occurred!\nTry again later", Toast.LENGTH_SHORT).show()
-                    holder.ivFav.setImageResource(R.drawable.ic_favorite_unselected)
                 }
             }
         }
     }
-}

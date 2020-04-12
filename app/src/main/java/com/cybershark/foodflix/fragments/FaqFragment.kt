@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.cybershark.foodflix.R
 import com.cybershark.foodflix.adapters.FaqAdapter
+import kotlinx.android.synthetic.main.fragment_faq.*
 
 class FaqFragment : Fragment() {
 
@@ -23,6 +25,7 @@ class FaqFragment : Fragment() {
         rvFaq.layoutManager= LinearLayoutManager(activity as Context)
         initValues()
         rvFaq.adapter=FaqAdapter(activity as Context,menuList)
+        inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility=View.GONE
         rvFaq.adapter!!.notifyDataSetChanged()
         return inflatedView
     }

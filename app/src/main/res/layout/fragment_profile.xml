@@ -9,12 +9,12 @@
     tools:ignore="RtlSymmetry">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/lighterGray"
-        android:backgroundTint="@color/lighterGray"
+        android:layout_margin="32dp"
         app:cardCornerRadius="8dp"
+        tools:backgroundTint="@color/colorAccent"
         tools:ignore="UnusedAttribute">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +43,7 @@
                 android:layout_margin="8dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:paddingStart="16dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvProfileEmail"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
                 android:layout_margin="8dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:paddingStart="16dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tvProfilePhone"
@@ -76,7 +76,7 @@
                 android:layout_margin="8dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:paddingStart="16dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvProfileLocation"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +94,7 @@
                 android:layout_marginBottom="16dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:paddingStart="16dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

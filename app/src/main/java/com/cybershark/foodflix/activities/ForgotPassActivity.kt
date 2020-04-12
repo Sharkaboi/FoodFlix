@@ -39,6 +39,7 @@ class ForgotPassActivity : AppCompatActivity() {
             }else if(phone.length<10){
                 Toast.makeText(this,"Invalid Phone Number!",Toast.LENGTH_SHORT).show()
             }else{
+                contentLoading.visibility=View.VISIBLE
                 forgotPassAPIFunc()
             }
         }
@@ -61,13 +62,16 @@ class ForgotPassActivity : AppCompatActivity() {
                             Toast.makeText(this,"Use same OTP for 24 Hours",Toast.LENGTH_LONG).show()
                         otpActivityIntent()
                     }else{
+                        contentLoading.visibility=View.GONE
                         Toast.makeText(this, "Error: ${data.getString("errorMessage")}", Toast.LENGTH_SHORT).show()
                     }
                 }catch (e:Exception){
+                    contentLoading.visibility=View.GONE
                     Toast.makeText(this, "An Unexpected Error has occurred!", Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener {
+                contentLoading.visibility=View.GONE
                 Toast.makeText(this, "Error sending Data to the server!", Toast.LENGTH_SHORT).show()
                 Log.e("foodflix",it.message.toString())
             }) {

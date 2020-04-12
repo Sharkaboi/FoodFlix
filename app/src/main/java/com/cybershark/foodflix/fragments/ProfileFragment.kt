@@ -23,6 +23,8 @@ class ProfileFragment : Fragment() {
       val tvProfilePhone=inflatedView.findViewById<TextView>(R.id.tvProfilePhone)
       val tvProfileEmail=inflatedView.findViewById<TextView>(R.id.tvProfileEmail)
       val tvProfileLocation=inflatedView.findViewById<TextView>(R.id.tvProfileLocation)
+      val cardView=inflatedView.findViewById<androidx.cardview.widget.CardView>(R.id.cardView)
+      cardView.setBackgroundResource(R.drawable.gradient_bg)
       sharedPreferences=activity!!.getSharedPreferences(spFileName, Context.MODE_PRIVATE)
       tvProfileName.text=sharedPreferences.getString("name","Error")
       tvProfilePhone.text=sharedPreferences.getString("phone","Error")

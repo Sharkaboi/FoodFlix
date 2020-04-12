@@ -54,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(this, "Values cannot be blank", Toast.LENGTH_SHORT).show()
         }else if (!isEmailValid(email)){
             Toast.makeText(this,"Invalid Email",Toast.LENGTH_SHORT).show()
-        }else if (pass.length<4){
+        }else if (pass.length<6){
           Toast.makeText(this,"Password too Short!",Toast.LENGTH_SHORT).show()
         }else if(name.length<3){
             Toast.makeText(this,"Username too Short!",Toast.LENGTH_SHORT).show()

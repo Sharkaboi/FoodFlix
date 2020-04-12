@@ -38,9 +38,9 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
 
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
         if (tempItemList[position].fav)
-            holder.ivFav.setImageResource(R.drawable.ic_favorite_selected)
+            Glide.with(context).load(R.drawable.ic_favorite_selected).into(holder.ivFav)
         else
-            holder.ivFav.setImageResource(R.drawable.ic_favorite_unselected)
+            Glide.with(context).load(R.drawable.ic_favorite_unselected).into(holder.ivFav)
         Glide.with(context)
             .load(tempItemList[position].image)
             .error(R.drawable.ic_no_wifi)
@@ -52,7 +52,6 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
         ///TODO:add listener
         holder.itemView.setOnClickListener{
             Log.e("foodflix","item onclick")
-            Toast.makeText(context,"${tempItemList[position].name} clicked!",Toast.LENGTH_SHORT).show()
         }
         holder.ivFav.setOnClickListener {
             Log.e("foodflix","fav onclick")
