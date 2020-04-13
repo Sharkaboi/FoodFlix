@@ -6,6 +6,35 @@
     android:layout_height="match_parent"
     android:background="@color/greyBackground">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="navUp"
+            app:srcCompat="@drawable/ic_up"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-light"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="24dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Dominoe's Bread" />
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/tvMenuHint"
         android:layout_width="wrap_content"
@@ -19,7 +48,7 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <ImageView
         android:id="@+id/ivFavMenu"
@@ -28,7 +57,7 @@
         android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:srcCompat="@drawable/ic_favorite_unselected"
         tools:ignore="ContentDescription" />
 
@@ -36,6 +65,7 @@
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toTopOf="@id/rvResMenu"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,11 +95,9 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/contentLoading"

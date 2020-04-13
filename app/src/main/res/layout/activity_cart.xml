@@ -7,6 +7,36 @@
     android:background="@color/greyBackground"
     tools:context=".activities.CartActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="navUp"
+            app:srcCompat="@drawable/ic_up"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-light"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="24dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Dominoe's Bread" />
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/tvCartHint"
         android:layout_width="wrap_content"
@@ -17,7 +47,7 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/tvCartResName"
@@ -48,12 +78,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="4dp"
-        tools:listitem="@layout/cart_item"
-        tools:itemCount="5"
         app:layout_constraintBottom_toTopOf="@+id/btnCartOrder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider4" />
+        app:layout_constraintTop_toBottomOf="@id/divider4"
+        tools:itemCount="5"
+        tools:listitem="@layout/cart_item" />
 
     <Button
         android:id="@+id/btnCartOrder"

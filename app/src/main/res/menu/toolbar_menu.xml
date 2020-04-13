@@ -2,11 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:id="@+id/filter_group"
-        android:checkableBehavior="single">
-    <item android:id="@+id/filter"
-        android:icon="@drawable/ic_filter"
-        android:title="@string/filter"
-        app:showAsAction="always"/>
-    </group>
+    <item
+        android:id="@+id/filter_group"
+        android:title="@string/sort"
+        android:icon="@drawable/ic_sort"
+        app:showAsAction="ifRoom">
+        <menu>
+
+            <item
+                android:id="@+id/filter_rating"
+                android:title="@string/rating"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/filter_cost_low_high"
+                android:title="@string/price_asecending" />
+
+            <item
+                android:id="@+id/filter_cost_high_low"
+                android:title="@string/price_decending"/>
+
+        </menu>
+    </item>
+
 </menu>

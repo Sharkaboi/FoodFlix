@@ -15,7 +15,7 @@
     <string name="enter_address">Enter Delivery Address</string>
     <string name="retrieve_account">Retrieve Account</string>
     <string name="log_out">Log Out</string>
-    <string name="filter">Filter</string>
+    <string name="sort">Sort By</string>
     <string name="home">Home</string>
     <string name="my_profile">My Profile</string>
     <string name="favourite_restaurants">Favourite Restaurants</string>
@@ -38,4 +38,9 @@
     <string name="total">Total:</string>
     <string name="no_previous_orders_nstart_ordering_yummy_food_on_foodflix">No Previous Orders!\n\nStart ordering yummy food on FoodFlix :)</string>
     <string name="no_favorites_added_yet">No Favorites added yet!</string>
+    <string name="rating">Rating</string>
+    <string name="price_asecending">Price (Asecending)</string>
+    <string name="price_decending">Price (Decending)</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
 </resources>

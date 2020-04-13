@@ -35,10 +35,11 @@
 
     <Button
         android:id="@+id/btnOrderOk"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/edit_text_bg"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/btn_bg"
         android:fontFamily="@font/netflix_font"
         android:paddingHorizontal="48dp"
         android:paddingVertical="12dp"

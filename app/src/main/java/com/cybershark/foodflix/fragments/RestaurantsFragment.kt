@@ -8,6 +8,7 @@ import android.provider.Settings
 import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,10 +22,10 @@ import com.cybershark.foodflix.dataclasses.RestaurantDataClass
 import com.cybershark.foodflix.sqllite.DBAsyncTask
 import com.cybershark.foodflix.sqllite.RestaurantEntity
 import com.cybershark.foodflix.util.InternetConnectionManager
-import java.lang.Exception
 import java.util.*
 import kotlin.Comparator
 import kotlin.collections.HashMap
+
 
 class RestaurantsFragment : Fragment() {
 
@@ -36,8 +37,23 @@ class RestaurantsFragment : Fragment() {
                 res1.rating.compareTo(res2.rating)
             }
     }
+    private var priceHighLowComparator= Comparator<RestaurantDataClass>{ res1,res2->
+        if((res1.price.compareTo(res2.price))==0){
+            res1.name.compareTo(res2.name)*-1
+        }else{
+            res1.price.compareTo(res2.price)
+        }
+    }
+    private var priceLowHighComparator= Comparator<RestaurantDataClass>{ res1,res2->
+        if((res1.price.compareTo(res2.price))==0){
+            res1.name.compareTo(res2.name)
+        }else{
+            res1.price.compareTo(res2.price)
+        }
+    }
     private lateinit var restaurantList: MutableList<RestaurantDataClass>
     private lateinit var rvRestaurants:RecyclerView
+    private lateinit var resSearchView:SearchView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //has menu only for this fragment
@@ -49,10 +65,12 @@ class RestaurantsFragment : Fragment() {
             if (InternetConnectionManager().isNetworkAccessActive(activity as Context)) {
 
                 restaurantList = mutableListOf()
+                resSearchView=inflatedView.findViewById(R.id.resSearchView)
                 rvRestaurants = inflatedView.findViewById(R.id.rvRestaurants)
 
                 rvRestaurants.layoutManager = LinearLayoutManager(activity as Context)
-                rvRestaurants.adapter = RestaurantsAdapter(activity as Context, restaurantList)
+                val adapter=RestaurantsAdapter(activity as Context, restaurantList)
+                rvRestaurants.adapter = adapter
 
                 val queue = Volley.newRequestQueue(activity as Context)
                 val jsonObjectRequest = object : JsonObjectRequest(
@@ -80,6 +98,16 @@ class RestaurantsFragment : Fragment() {
                                     RestaurantDataClass(id, name, rating, cost, image, fav)
                                 )
                             }
+                            /*resSearchView.setOnQueryTextListener(object :
+                                SearchView.OnQueryTextListener {
+                                override fun onQueryTextSubmit(query: String): Boolean {
+                                    return false
+                                }
+                                override fun onQueryTextChange(newText: String): Boolean {
+                                    adapter.getFilter()?.filter(newText)
+                                    return false
+                                }
+                            })*/
                         }
                         rvRestaurants.adapter!!.notifyDataSetChanged()
                         inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility=View.GONE
@@ -126,6 +154,7 @@ class RestaurantsFragment : Fragment() {
             Toast.makeText(activity as Context, "An Unexpected Error has occurred!", Toast.LENGTH_SHORT).show()
             Log.e("foodflix",e.message.toString())
         }
+
         return inflatedView
     }
 
@@ -134,10 +163,24 @@ class RestaurantsFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==R.id.filter){
-            Collections.sort(restaurantList,ratingComparator)
-            restaurantList.reverse()
-            rvRestaurants.adapter?.notifyDataSetChanged()
+        when (item.itemId) {
+            R.id.filter_rating -> {
+                Collections.sort(restaurantList,ratingComparator)
+                restaurantList.reverse()
+                rvRestaurants.adapter?.notifyDataSetChanged()
+            }
+            R.id.filter_cost_high_low -> {
+                Collections.sort(restaurantList,priceHighLowComparator)
+                restaurantList.reverse()
+                rvRestaurants.adapter?.notifyDataSetChanged()
+            }
+            R.id.filter_cost_low_high -> {
+                Collections.sort(restaurantList,priceLowHighComparator)
+                rvRestaurants.adapter?.notifyDataSetChanged()
+            }
+            else -> {
+                item.isChecked=false
+            }
         }
         return super.onOptionsItemSelected(item)
     }

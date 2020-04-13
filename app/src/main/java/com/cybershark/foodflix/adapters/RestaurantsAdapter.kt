@@ -1,10 +1,12 @@
 package com.cybershark.foodflix.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,12 +15,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.cybershark.foodflix.R
+import com.cybershark.foodflix.activities.ResMenuActivity
 import com.cybershark.foodflix.dataclasses.RestaurantDataClass
 import com.cybershark.foodflix.sqllite.DBAsyncTask
 import com.cybershark.foodflix.sqllite.RestaurantEntity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.restaurant_item.view.*
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class RestaurantsAdapter(private val context:Context,private val tempItemList:MutableList<RestaurantDataClass>): RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>() {
+
+    private val tempItemListCopy=tempItemList
 
     inner class  RestaurantsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val ivResPic: ImageView=itemView.ivResPic
@@ -51,7 +60,9 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
         holder.tvResName.text=tempItemList[position].name.trim()
         ///TODO:add listener
         holder.itemView.setOnClickListener{
-            Log.e("foodflix","item onclick")
+            val intent=Intent(context,ResMenuActivity::class.java)
+            intent.putExtra("res",Gson().toJson(tempItemList[position]))
+            context.startActivity(intent)
         }
         holder.ivFav.setOnClickListener {
             Log.e("foodflix","fav onclick")
@@ -102,4 +113,35 @@ class RestaurantsAdapter(private val context:Context,private val tempItemList:Mu
             }
         }
     }
+/*
+    fun getFilter(): Filter? {
+        return searchFilter
+    }
+
+    private val searchFilter: Filter = object : Filter() {
+        override fun performFiltering(constraint: CharSequence): FilterResults {
+            val filteredList: MutableList<RestaurantDataClass> = ArrayList()
+            if (constraint == null || constraint.isEmpty()) {
+                filteredList.addAll(tempItemListCopy)
+            } else {
+                val filterPattern = constraint.toString().trim().toLowerCase(Locale.ROOT)
+                for (item in tempItemListCopy) {
+                    if (item.name.toLowerCase(Locale.ROOT).contains(filterPattern)) {
+                        filteredList.add(item)
+                    }
+                }
+            }
+            val results = FilterResults()
+            results.values = filteredList
+            return results
+        }
+
+        override fun publishResults(constraint: CharSequence, results: FilterResults) {
+            tempItemList.clear()
+            tempItemList.addAll(results.values as List<RestaurantDataClass>)
+            notifyDataSetChanged()
+        }
+    }
+
+ */
 }

@@ -1,11 +1,13 @@
 package com.cybershark.foodflix.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -47,6 +49,7 @@ class HomeActivity : AppCompatActivity() {
         //sets nav bar listener
         nav_view.setNavigationItemSelectedListener {
             drawer_layout.closeDrawer(GravityCompat.START)
+            hideKeyboard(this)
             when (it.itemId) {
                 R.id.home_item -> {
                     when {
@@ -128,5 +131,15 @@ class HomeActivity : AppCompatActivity() {
             }
             else -> super.onBackPressed()
         }
+    }
+
+    private fun hideKeyboard(activity: Activity) {
+        val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view: View? = activity.currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        Log.e("foodflix","kb hide")
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

@@ -58,6 +58,8 @@ class FavResAdapter(private val context:Context,private val tempItemList:Mutable
                     tempItemList.removeAt(position)
                     notifyItemRemoved(position)
                     notifyItemRangeChanged(position,tempItemList.size)
+                    if(tempItemList.isEmpty())
+                        //todo add empty msg
                     Toast.makeText(context, "Removed $name to Favourites!", Toast.LENGTH_SHORT).show()
                 }
                 else {

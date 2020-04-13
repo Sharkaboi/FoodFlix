@@ -10,8 +10,8 @@
 
     <ImageButton
         android:id="@+id/ivForgotUp"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:onClick="forgotPassUp"
         android:padding="16dp"

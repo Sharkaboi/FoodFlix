@@ -17,10 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
-        <activity android:name=".activities.CartActivity"
+        <activity android:name=".activities.ResMenuActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".activities.OrderSuccessActivity"
+        <activity
+            android:name=".activities.CartActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".activities.OrderSuccessActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="sensorPortrait" />
         <activity
