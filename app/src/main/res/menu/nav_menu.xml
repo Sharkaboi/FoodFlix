@@ -30,7 +30,7 @@
             android:title="@string/faq_s" />
 
     </group>
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/logout_item"
             android:icon="@drawable/ic_exit"
