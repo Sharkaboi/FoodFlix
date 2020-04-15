@@ -1,5 +1,4 @@
-# <img src="https://github.com/Sharkaboi/FoodFlix/blob/master/app/src/main/res/mipmap-ldpi/ic_launcher.png" width="30" height="30"/> FoodFlix<BR>  
-![Gradle build test and release](https://github.com/Sharkaboi/FoodFlix/workflows/Gradle%20build%20test%20and%20release/badge.svg)  
+# <img src="https://github.com/Sharkaboi/FoodFlix/blob/master/app/src/main/res/mipmap-ldpi/ic_launcher.png" width="30" height="30"/> FoodFlix<BR>   
 <BR>
 App made for InternShala Course Final Project. 
 <BR>
