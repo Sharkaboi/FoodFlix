@@ -3,7 +3,6 @@ package com.cybershark.foodflix.fragments
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -16,7 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -26,12 +24,13 @@ import com.cybershark.foodflix.adapters.OrderHistoryParentAdapter
 import com.cybershark.foodflix.dataclasses.OrderDetails
 import com.cybershark.foodflix.util.InternetConnectionManager
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_order_history.*
+import kotlin.collections.HashMap
 
 class OrderHistoryFragment : Fragment() {
 
     private lateinit var inflatedView: View
     private var spFileName="foodFlixFile"
+    private lateinit var ordersListFromAPI: MutableList<OrderDetails>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -40,7 +39,7 @@ class OrderHistoryFragment : Fragment() {
         val sharedPreferences=activity?.getSharedPreferences(spFileName,Context.MODE_PRIVATE)
         val userID=sharedPreferences!!.getString("id",null)
         val rvPreviousOrders=inflatedView.findViewById<RecyclerView>(R.id.rvPreviousOrders)
-        val ordersListFromAPI= mutableListOf<OrderDetails>()
+        ordersListFromAPI= mutableListOf()
         val tvNoOrders=inflatedView.findViewById<TextView>(R.id.tvNoOrders)
         val tvPreviousOrders=inflatedView.findViewById<TextView>(R.id.tvPreviousOrders)
         val divider5=inflatedView.findViewById<View>(R.id.divider5)
@@ -72,10 +71,9 @@ class OrderHistoryFragment : Fragment() {
                                         )
                                     )
                                 }
-                                rvPreviousOrders.adapter = OrderHistoryParentAdapter(
-                                    activity as Context,
-                                    ordersListFromAPI
-                                )
+                                sortList()
+                                println(ordersListFromAPI)
+                                rvPreviousOrders.adapter = OrderHistoryParentAdapter(activity as Context, ordersListFromAPI)
                                 rvPreviousOrders.adapter!!.notifyDataSetChanged()
                             }
                             contentLoading.visibility = View.GONE
@@ -101,7 +99,7 @@ class OrderHistoryFragment : Fragment() {
                         .setIcon(R.drawable.ic_no_wifi)
                         .setTitle("No Internet")
                         .setMessage("Internet Access has been Restricted.")
-                        .setPositiveButton("Retry") { dialog, which ->
+                        .setPositiveButton("Retry") { dialog, _ ->
                             if (activity != null)
                                 if (InternetConnectionManager().isNetworkAccessActive(activity as Context)) {
                                     dialog.dismiss()
@@ -115,7 +113,7 @@ class OrderHistoryFragment : Fragment() {
                                         ).show()
                                 }
                         }
-                        .setNegativeButton("Open Settings") { dialog, which ->
+                        .setNegativeButton("Open Settings") { _, _ ->
                             startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
                         }
                         .setCancelable(false)
@@ -123,6 +121,10 @@ class OrderHistoryFragment : Fragment() {
             }
         }
         return inflatedView
+    }
+
+    private fun sortList() {
+        ordersListFromAPI.sortByDescending { it.orderDate }
     }
 
 }

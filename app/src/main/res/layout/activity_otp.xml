@@ -74,7 +74,7 @@
         android:background="@drawable/edit_text_bg"
         android:ems="15"
         android:fontFamily="sans-serif-condensed-light"
-        android:hint="@string/enter_repassword"
+        android:hint="@string/enter_re_password"
         android:importantForAutofill="no"
         android:inputType="textVisiblePassword"
         android:paddingHorizontal="24dp"

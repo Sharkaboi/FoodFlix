@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:fontFamily="sans-serif-condensed-light"
-        android:text="@string/no_previous_orders_nstart_ordering_yummy_food_on_foodflix"
+        android:text="@string/no_previous_orders_start_ordering_yummy_food_on_foodflix"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="20sp"

@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -71,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
                     .setIcon(R.drawable.ic_no_wifi)
                     .setTitle("No Internet")
                     .setMessage("Internet Access has been Restricted.")
-                    .setPositiveButton("Retry") { dialog, which ->
+                    .setPositiveButton("Retry") { dialog, _ ->
                             if (InternetConnectionManager().isNetworkAccessActive(this)) {
                                 dialog.dismiss()
                                 registerInServer()
@@ -79,7 +78,7 @@ class RegisterActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Still Disconnected :(", Toast.LENGTH_SHORT).show()
                             }
                     }
-                    .setNegativeButton("Open Settings") { dialog, which ->
+                    .setNegativeButton("Open Settings") { _, _ ->
                         startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
                     }.show()
             }else{

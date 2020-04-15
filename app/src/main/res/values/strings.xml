@@ -10,7 +10,7 @@
     <string name="enter_name">Enter Name (Min 3 Characters)</string>
     <string name="enter_new_password_min">Enter New Password (Min 6 Characters)</string>
     <string name="enter_password_min">Enter Password (Min 6 Characters)</string>
-    <string name="enter_repassword">Re-Enter Password</string>
+    <string name="enter_re_password">Re-Enter Password</string>
     <string name="enter_email">Enter Email</string>
     <string name="enter_address">Enter Delivery Address</string>
     <string name="retrieve_account">Retrieve Account</string>
@@ -27,20 +27,19 @@
     <string name="retry">Retry</string>
     <string name="uh_oh_you_don_t_seem_to_be_connected_to_the_internet">Uh-Oh! You Don\'t Seem to be Connected to the Internet!</string>
     <string name="next">Next</string>
-    <string name="otp">Enter the recieved OTP below.</string>
+    <string name="otp">Enter the received OTP below.</string>
     <string name="enter_otp">Enter OTP (4 Characters)</string>
     <string name="choose_from_menu_listed_below">Choose from menu listed below :</string>
     <string name="proceed_to_cart">Proceed To Cart</string>
     <string name="your_order_has_been_successfully_placed">Your order has been successfully placed!</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="place_order">Place Order</string>
     <string name="ordering_from">Ordering From:</string>
-    <string name="total">Total:</string>
-    <string name="no_previous_orders_nstart_ordering_yummy_food_on_foodflix">No Previous Orders!\n\nStart ordering yummy food on FoodFlix :)</string>
+    <string name="no_previous_orders_start_ordering_yummy_food_on_foodflix">No Previous Orders!\n\nStart ordering yummy food on FoodFlix :)</string>
     <string name="no_favorites_added_yet">No Favorites added yet!</string>
     <string name="rating">Rating</string>
-    <string name="price_asecending">Price (Asecending)</string>
-    <string name="price_decending">Price (Decending)</string>
+    <string name="price_ascending">Price (Ascending)</string>
+    <string name="price_descending">Price (Descending)</string>
     <string name="add">Add</string>
     <string name="remove">Remove</string>
 </resources>

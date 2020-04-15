@@ -28,28 +28,35 @@ import org.json.JSONObject
 
 class CartActivity : AppCompatActivity() {
 
+    //class variables
     private lateinit var sharedPreferences: SharedPreferences
     private var spFileName="foodFlixFile"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //inflate layout
         setContentView(R.layout.activity_cart)
 
+        //set custom toolbar with title in separate text view so it doesn't overlap nav up button
         toolbar.findViewById<TextView>(R.id.tvToolbar).text= ("My Cart")
         toolbar.title=""
         setSupportActionBar(toolbar)
 
+        //getting shared preferences and storing user id
         sharedPreferences=getSharedPreferences(spFileName,Context.MODE_PRIVATE)
         val userID=sharedPreferences.getString("id",null)
 
+        //reads restaurant name and id for text view and API
         val bundle=intent.extras
         val name=bundle?.getString("resName")
         tvCartResName.text=name
         val resId=bundle?.getInt("resID")
 
+        //get total from sql command through room
         val total= RetrieveTotalOrCountAsyncTask(this,1).execute().get()
         btnCartOrder.text=("Place Order ( Total : Rs.$total )")
 
+        //initializing cart item json array for json params
         val cartItemsListJSONArray=JSONArray()
 
         rvCart.layoutManager=LinearLayoutManager(this)
@@ -107,7 +114,7 @@ class CartActivity : AppCompatActivity() {
                         .setIcon(R.drawable.ic_no_wifi)
                         .setTitle("No Internet")
                         .setMessage("Internet Access has been Restricted.")
-                        .setPositiveButton("Retry") { dialog, which ->
+                        .setPositiveButton("Retry") { dialog, _ ->
                             if (InternetConnectionManager().isNetworkAccessActive(this)) {
                                 dialog.dismiss()
                                 val intent=Intent(this,CartActivity::class.java)
@@ -120,7 +127,7 @@ class CartActivity : AppCompatActivity() {
                                 onBackPressed()
                             }
                         }
-                        .setNegativeButton("Open Settings") { dialog, which ->
+                        .setNegativeButton("Open Settings") { _, _ ->
                             startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
                         }
                         .setCancelable(false)

@@ -7,18 +7,6 @@
     android:background="@color/greyBackground"
     tools:context=".fragments.RestaurantsFragment">
 
-    <SearchView
-        android:id="@+id/resSearchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lighterGray"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search For Restaurants"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRestaurants"
         android:layout_width="match_parent"
@@ -30,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resSearchView"
+        app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="10"
         tools:listitem="@layout/restaurant_item" />
 

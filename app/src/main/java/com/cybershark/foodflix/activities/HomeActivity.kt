@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
+    private val requestCodeRef=1
     private lateinit var sharedPreferences: SharedPreferences
     private val spFileName = "foodFlixFile"
 
@@ -91,19 +92,18 @@ class HomeActivity : AppCompatActivity() {
                     }
                 }
                 R.id.logout_item -> {
-                    Log.e("foodflix", "log out pressed")
                     AlertDialog
                         .Builder(this)
                         .setTitle("Confirmation")
                         .setMessage("Are you sure You want to log out?")
-                        .setPositiveButton("Yes") { dialog, whichButton ->
+                        .setPositiveButton("Yes") { dialog, _ ->
                             //log out
                             sharedPreferences.edit().clear().apply()
                             startActivity(Intent(this, LoginActivity::class.java))
                             finishAffinity()
                             dialog.dismiss()
                         }
-                        .setNegativeButton("No") { dialog, whichButton ->
+                        .setNegativeButton("No") { dialog, _ ->
                             dialog.dismiss()
                         }
                         .show()
@@ -139,7 +139,18 @@ class HomeActivity : AppCompatActivity() {
         if (view == null) {
             view = View(activity)
         }
-        Log.e("foodflix","kb hide")
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e("foodflix","activity result")
+        if (resultCode== Activity.RESULT_OK && requestCode==requestCodeRef) {
+            Log.e("foodflix","Refreshing Fragment")
+            if(supportFragmentManager.findFragmentById(R.id.fragmentContainer) is RestaurantsFragment)
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, RestaurantsFragment()).commit()
+            else if(supportFragmentManager.findFragmentById(R.id.fragmentContainer) is FavouritesFragment)
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,FavouritesFragment()).commit()
+        }
     }
 }

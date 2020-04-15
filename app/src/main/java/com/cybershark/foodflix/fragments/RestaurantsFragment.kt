@@ -8,7 +8,6 @@ import android.provider.Settings
 import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,7 +52,6 @@ class RestaurantsFragment : Fragment() {
     }
     private lateinit var restaurantList: MutableList<RestaurantDataClass>
     private lateinit var rvRestaurants:RecyclerView
-    private lateinit var resSearchView:SearchView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //has menu only for this fragment
@@ -65,7 +63,6 @@ class RestaurantsFragment : Fragment() {
             if (InternetConnectionManager().isNetworkAccessActive(activity as Context)) {
 
                 restaurantList = mutableListOf()
-                resSearchView=inflatedView.findViewById(R.id.resSearchView)
                 rvRestaurants = inflatedView.findViewById(R.id.rvRestaurants)
 
                 rvRestaurants.layoutManager = LinearLayoutManager(activity as Context)
@@ -98,16 +95,6 @@ class RestaurantsFragment : Fragment() {
                                     RestaurantDataClass(id, name, rating, cost, image, fav)
                                 )
                             }
-                            /*resSearchView.setOnQueryTextListener(object :
-                                SearchView.OnQueryTextListener {
-                                override fun onQueryTextSubmit(query: String): Boolean {
-                                    return false
-                                }
-                                override fun onQueryTextChange(newText: String): Boolean {
-                                    adapter.getFilter()?.filter(newText)
-                                    return false
-                                }
-                            })*/
                         }
                         rvRestaurants.adapter!!.notifyDataSetChanged()
                         inflatedView.findViewById<ProgressBar>(R.id.contentLoading).visibility=View.GONE
@@ -133,7 +120,7 @@ class RestaurantsFragment : Fragment() {
                     .setIcon(R.drawable.ic_no_wifi)
                     .setTitle("No Internet")
                     .setMessage("Internet Access has been Restricted.")
-                    .setPositiveButton("Retry") { dialog, which ->
+                    .setPositiveButton("Retry") { dialog, _ ->
                         if (activity!=null)
                         if (InternetConnectionManager().isNetworkAccessActive(activity as Context)) {
                             dialog.dismiss()
@@ -143,7 +130,7 @@ class RestaurantsFragment : Fragment() {
                             Toast.makeText(activity as Context, "Still Disconnected :(", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    .setNegativeButton("Open Settings") { dialog, which ->
+                    .setNegativeButton("Open Settings") { _, _ ->
                         startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
                     }
                     .setCancelable(false)

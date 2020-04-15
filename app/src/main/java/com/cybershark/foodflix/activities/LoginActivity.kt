@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                     .setIcon(R.drawable.ic_no_wifi)
                     .setTitle("No Internet")
                     .setMessage("Internet Access has been Restricted.")
-                    .setPositiveButton("Retry") { dialog, which ->
+                    .setPositiveButton("Retry") { dialog, _ ->
                         if (InternetConnectionManager().isNetworkAccessActive(this)) {
                             dialog.dismiss()
                             loginWithAPICheck()
@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, "Still Disconnected :(", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    .setNegativeButton("Open Settings") { dialog, which ->
+                    .setNegativeButton("Open Settings") { _, _ ->
                         startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
                     }.show()
             }else{

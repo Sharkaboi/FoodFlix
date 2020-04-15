@@ -16,11 +16,11 @@
 
             <item
                 android:id="@+id/filter_cost_low_high"
-                android:title="@string/price_asecending" />
+                android:title="@string/price_ascending" />
 
             <item
                 android:id="@+id/filter_cost_high_low"
-                android:title="@string/price_decending"/>
+                android:title="@string/price_descending"/>
 
         </menu>
     </item>

@@ -1,6 +1,8 @@
 package com.cybershark.foodflix.adapters
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +15,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.cybershark.foodflix.R
+import com.cybershark.foodflix.activities.ResMenuActivity
 import com.cybershark.foodflix.sqllite.DBAsyncTask
 import com.cybershark.foodflix.sqllite.RestaurantEntity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.restaurant_item.view.*
 
 class FavResAdapter(private val context:Context,private val tempItemList:MutableList<RestaurantEntity>): RecyclerView.Adapter<FavResAdapter.FavResViewHolder>() {
+
+    private val requestCode=1
 
     inner class  FavResViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivResPic: ImageView=itemView.ivResPic
@@ -45,8 +51,12 @@ class FavResAdapter(private val context:Context,private val tempItemList:Mutable
         holder.tvRating.text=tempItemList[position].rating.toString().trim()
         holder.tvResCost.text=("₹ "+tempItemList[position].price+" per person.")
         holder.tvResName.text=tempItemList[position].name.trim()
+        holder.itemView.setOnClickListener{
+            val intent= Intent(context, ResMenuActivity::class.java)
+            intent.putExtra("res", Gson().toJson(tempItemList[position]))
+            (context as Activity).startActivityForResult(intent,requestCode)
+        }
         holder.ivFav.setOnClickListener {
-            Log.e("foodflix","fav onclick")
                 //remove from db
                 val result=DBAsyncTask(
                     context.applicationContext,

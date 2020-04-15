@@ -27,6 +27,7 @@
         android:layout_margin="16dp"
         android:fontFamily="sans-serif-condensed-light"
         android:padding="8dp"
+        android:textAlignment="center"
         android:text="@string/uh_oh_you_don_t_seem_to_be_connected_to_the_internet"
         android:textColor="@android:color/white"
         android:textSize="18sp"

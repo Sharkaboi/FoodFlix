@@ -1,14 +1,13 @@
 package com.cybershark.foodflix.activities
 
+import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,10 +17,8 @@ import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.cybershark.foodflix.R
 import com.cybershark.foodflix.adapters.ResMenuAdapter
-import com.cybershark.foodflix.dataclasses.FoodItemDetails
 import com.cybershark.foodflix.dataclasses.MenuItemDetails
 import com.cybershark.foodflix.dataclasses.RestaurantDataClass
-import com.cybershark.foodflix.fragments.RestaurantsFragment
 import com.cybershark.foodflix.sqllite.CartAsyncTask
 import com.cybershark.foodflix.sqllite.DBAsyncTask
 import com.cybershark.foodflix.sqllite.RestaurantEntity
@@ -30,7 +27,6 @@ import com.cybershark.foodflix.util.InternetConnectionManager
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_res_menu.*
 import kotlinx.android.synthetic.main.activity_res_menu.contentLoading
-import kotlinx.android.synthetic.main.fragment_restaurants.*
 
 class ResMenuActivity : AppCompatActivity() {
 
@@ -42,7 +38,7 @@ class ResMenuActivity : AppCompatActivity() {
 
         val bundle=intent.extras
         val res=Gson().fromJson<RestaurantDataClass>(bundle?.getString("res"),RestaurantDataClass::class.java)
-        val res_id=res.id
+        val resId=res.id
         var isFav=res.fav
 
         toolbar.findViewById<TextView>(R.id.tvToolbar).text= res.name
@@ -57,7 +53,7 @@ class ResMenuActivity : AppCompatActivity() {
         ivFavMenu.setOnClickListener {
             if(isFav){
                 //remove from DB
-                val result=DBAsyncTask(this, RestaurantEntity(res_id,res.name,res.rating,res.price,res.image,true),3).execute().get()
+                val result=DBAsyncTask(this, RestaurantEntity(resId,res.name,res.rating,res.price,res.image,true),3).execute().get()
                 if(result){
                     Glide.with(this).load(R.drawable.ic_favorite_unselected).into(ivFavMenu)
                     isFav=false
@@ -65,7 +61,7 @@ class ResMenuActivity : AppCompatActivity() {
                 }
             }else{
                 //add to DB
-                val result=DBAsyncTask(this, RestaurantEntity(res_id,res.name,res.rating,res.price,res.image,true),2).execute().get()
+                val result=DBAsyncTask(this, RestaurantEntity(resId,res.name,res.rating,res.price,res.image,true),2).execute().get()
                 if(result){
                     Glide.with(this).load(R.drawable.ic_favorite_selected).into(ivFavMenu)
                     isFav=true
@@ -80,7 +76,7 @@ class ResMenuActivity : AppCompatActivity() {
                 Toast.makeText(this,"Add Dishes to proceed!",Toast.LENGTH_SHORT).show()
             }else {
                 val intent = Intent(this, CartActivity::class.java)
-                intent.putExtra("resID", res_id)
+                intent.putExtra("resID", resId)
                 intent.putExtra("resName", res.name)
                 startActivity(intent)
             }
@@ -94,7 +90,7 @@ class ResMenuActivity : AppCompatActivity() {
                 val queue=Volley.newRequestQueue(this)
                 val jsonObjectRequest=object :JsonObjectRequest(
                     Method.GET,
-                    "http://13.235.250.119/v2/restaurants/fetch_result/$res_id",
+                    "http://13.235.250.119/v2/restaurants/fetch_result/$resId",
                     null,
                     Response.Listener {
                         val data=it.getJSONObject("data")
@@ -129,7 +125,7 @@ class ResMenuActivity : AppCompatActivity() {
                     .setIcon(R.drawable.ic_no_wifi)
                     .setTitle("No Internet")
                     .setMessage("Internet Access has been Restricted.")
-                    .setPositiveButton("Retry") { dialog, which ->
+                    .setPositiveButton("Retry") { dialog, _ ->
                             if (InternetConnectionManager().isNetworkAccessActive(this)) {
                                 dialog.dismiss()
                                 val intent=Intent(this,ResMenuActivity::class.java)
@@ -141,7 +137,7 @@ class ResMenuActivity : AppCompatActivity() {
                                 onBackPressed()
                             }
                     }
-                    .setNegativeButton("Open Settings") { dialog, which ->
+                    .setNegativeButton("Open Settings") { _, _ ->
                         startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
                     }
                     .setCancelable(false)
@@ -157,6 +153,8 @@ class ResMenuActivity : AppCompatActivity() {
         if(RetrieveTotalOrCountAsyncTask(this,2).execute().get()==0){
             val result = CartAsyncTask(this, operationIndex = 4).execute().get()
             if (result) {
+                val res=Intent()
+                setResult(Activity.RESULT_OK,res)
                 super.onBackPressed()
             }
         }else {
@@ -164,14 +162,16 @@ class ResMenuActivity : AppCompatActivity() {
                 .setIcon(R.drawable.ic_warn)
                 .setTitle("Clear Cart?")
                 .setMessage("Going back will clear the cart,\nDo you wish to still proceed?")
-                .setPositiveButton("Yes") { dialog, which ->
+                .setPositiveButton("Yes") { dialog, _ ->
                     val result = CartAsyncTask(this, operationIndex = 4).execute().get()
                     if (result) {
                         dialog.dismiss()
+                        val res=Intent()
+                        setResult(Activity.RESULT_OK,res)
                         super.onBackPressed()
                     }
                 }
-                .setNegativeButton("No") { dialog, which ->
+                .setNegativeButton("No") { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()

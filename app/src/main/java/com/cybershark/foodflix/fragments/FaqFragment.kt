@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.cybershark.foodflix.R
 import com.cybershark.foodflix.adapters.FaqAdapter
-import kotlinx.android.synthetic.main.fragment_faq.*
 
 class FaqFragment : Fragment() {
 
