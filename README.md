@@ -3,7 +3,7 @@
 App made for InternShala Course Final Project. 
 <BR>
 ## ScreenShots<BR>
-<img src="https://i.imgur.com/30LhL7z.png" width="240" height="352" />  <img src="https://i.imgur.com/ZXTKmGL.png" width="240" height="352" />  <img src="https://i.imgur.com/0aGH4ME.png" width="240" height="352" /><BR>
+<img src="https://i.imgur.com/30LhL7z.png" width="240" height="352" /><img src="https://i.imgur.com/ZXTKmGL.png" width="240" height="352" /><img src="https://i.imgur.com/0aGH4ME.png" width="240" height="352" /><BR>
 
 ## Releases <BR>
 The Recent releases are found [here](https://github.com/Sharkaboi/FoodFlix/releases)
@@ -13,8 +13,8 @@ The Recent releases are found [here](https://github.com/Sharkaboi/FoodFlix/relea
 * Navigation Bar
 * JSON fetch and Parsing
 * SharedPreferences
-* RecyclerView Uses
-* Volley API
+* RecyclerView
+* Volley Library
 * Glide
 * Gson
 * Nested Recycler View
