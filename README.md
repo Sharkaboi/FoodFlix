@@ -1,5 +1,5 @@
 # <img src="https://github.com/Sharkaboi/FoodFlix/blob/master/app/src/main/res/mipmap-ldpi/ic_launcher.png" width="30" height="30"/> FoodFlix <BR>
-<p align="center">
+<p align="left">
     <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" alt="Kotlin">
         <img src="https://img.shields.io/badge/Kotlin-13.7.2-blue" /></a>
     <a href="https://github.com/Sharkaboi/FoodFlix/blob/master/LICENSE" alt="License">
