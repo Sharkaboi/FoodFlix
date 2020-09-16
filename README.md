@@ -10,7 +10,7 @@
 App made for InternShala Course Final Project.  
 
 ## ScreenShots <BR>
-<img src="https://i.imgur.com/30LhL7z.png" width="200" height="352" /> <img src="https://i.imgur.com/0aGH4ME.png" width="200" height="352" /> <img src="https://i.imgur.com/3DYupEN.png" width="200" height="352" />
+<img src="https://i.imgur.com/dMkp3Ww.png" />
 
 ## Releases <BR>
 The Recent releases are found [here](https://github.com/Sharkaboi/FoodFlix/releases)
